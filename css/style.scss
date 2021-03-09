@@ -1,0 +1,1143 @@
+@charset "UTF-8";
+
+
+
+// 変数
+
+
+
+$suggestion-color: #F9C1CF;
+$action-color: #A87699;
+
+
+
+// mixin
+
+
+
+@mixin suggestion-item() {
+    background: $suggestion-color;
+    border-radius: 100px;
+    position: relative;
+    max-width: 200px;
+    width: 25%;
+    height: 200px;
+    border: 7px double #fff;
+    color: #fff;
+    font-size: 25px;
+    line-height: 1.7;
+    text-align: center;
+    font-weight: 800;
+    &::before {
+        position: absolute;
+        top: 115%;
+        left: 35%;
+        color: $action-color;
+    }
+}
+
+
+
+// 共通部分
+
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../image/img2/bg-main-color.png);
+    font-size: 20px;
+    font-family: "游明朝体", serif;
+    color: #7E7B7B;
+    box-sizing: content-box; //含めない（初期値）
+}
+
+img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+ol {
+    margin: 0;
+    padding: 0
+}
+
+ol li {
+    list-style: none;
+    padding-left: 1.3em;
+    text-indent: -1.3em;
+}
+
+// 文字を縦書にする
+.cp1,
+.cp2,
+.under {
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+}
+
+.section-title40 {
+    font-size: 40px;
+    text-shadow: 0px 0px 10px #A50030;
+    color: #fff;
+    text-align: center;
+}
+
+.section-title60 {
+    font-size: 60px;
+    text-shadow: 0px 0px 10px #A50030;
+    color: #fff;
+    text-align: center;
+}
+
+.section-title-br{
+    display: none;
+}
+
+.product-title-br{
+    display: block;
+}
+
+
+
+// ヘッダー
+
+
+
+.header {
+    margin-bottom: 100px;
+
+    &-title {
+        font-size: 35px;
+        font-weight: 600;
+        color: #E892AB;
+        padding: 45px 0 66px 39px;
+    }
+
+    &-content {
+        display: flex;
+        position: relative;
+    }
+
+    &-image {
+        padding-right: 9%;
+        width: 917px;
+        height: 631px;
+    }
+
+    &-nav {
+        color: #E892AB;
+
+        &-lists {
+            width: 241px;
+        }
+
+        &-list {
+            margin-bottom: 36px;
+            padding-left: 39px;
+
+            &-link {
+                color: #E892AB;
+
+                &:hover {
+                    position: relative;
+                    cursor: pointer;
+                    color: $action-color;
+                }
+                
+                // ホバーした時に下線がつく
+                &:hover::after {
+                    position: absolute;
+                    content: "";
+                    height: 2px;
+                    width: 100%;
+                    bottom: -30%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #E892AB;
+                }
+            }
+        }
+    }
+}
+
+.cp1 {
+    &::after {
+        content: "肌とワタシの";
+        position: absolute;
+        color: #E892AB;
+        background-color: #F5EDED;
+        padding: 33px 10px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 25px;
+        right: 10%;
+        top: -15%;
+    }
+}
+
+.cp2 {
+    &::after {
+        content: "元気をもらいに";
+        position: absolute;
+        color: #E892AB;
+        background-color: #F5EDED;
+        padding: 30px 10px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 25px;
+        right: 20%;
+        top: 12%;
+    }
+}
+
+.under {
+    position: relative;
+
+    &::after {
+        content: "下へ";
+        color: #E892AB;
+        font-size: 20px;
+        right: 16%;
+    }
+
+    &::before {
+        content: "";
+        width: 1px;
+        height: 120px;
+        background-color: #E892AB;
+        position: absolute;
+        left: 50%;
+        bottom: -140px;
+        transform: translateX(-50%);
+    }
+
+    &-line {
+        position: absolute;
+        bottom: 95px;
+        right: 5%;
+    }
+}
+
+.menu-btn{
+    width: 70px;
+    height: 25px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #E892AB;
+    color: #E892AB;
+    position: fixed;
+    top: 15px;
+    right: 5%;
+    font-weight: 800;
+}
+
+.drawer{
+    &-nav{
+        display: none;
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(100,100,100,0.6);
+    }
+    
+    &-menu{
+        background: url(../image/img2/subtle_white_feathers@3x.png);
+        text-align: center;
+        padding-top: 100px;
+        width: 80vw;
+        height: 100vh;
+        margin-left: auto;
+        position: relative;
+        &-item{
+            display: block;
+            color: #E892AB;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+    }
+}
+
+.active{
+    display: block;
+}
+
+.close-btn{
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    width: 90px;
+    height: 25px;
+    border-radius: 11px;
+    border: 1px solid #E892AB;
+    p{
+        font-weight: 800;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #E892AB;
+        padding-left: 25px;
+        width: 100%;
+        height: 100%;
+        &::before{
+            content:"";
+            width: 2px;
+            height: 14px;
+            background: #707070;
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            transform: translatey(-50%) rotate(45deg);
+        }
+        &::after{
+            content:"";
+            width: 2px;
+            height: 14px;
+            background: #707070;
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            transform: translatey(-50%) rotate(-45deg);
+        }
+    }
+}
+
+
+
+// アバウト（あいさつ）
+
+
+
+.about {
+    max-width: 935px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 129px;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        background: url(../image/img2/logo1.png)center / cover no-repeat;
+        width: 70%;
+        height: 100%;
+        top: 0%;
+        right: -5%;
+    }
+
+    &-content {
+        display: flex;
+        align-items: center;
+        margin-top: 100px;
+    }
+
+    &-image {
+        width: 40%;
+        margin-right: 63px;
+
+        img {
+            max-width: 315px;
+            border-radius: 156px;
+        }
+    }
+
+    &-sentence{
+        width: calc(100% - 30%);
+    }
+
+    &-title {
+        font-size: 25px;
+        margin-bottom: 40px;
+        font-weight: 600;
+    }
+
+    &-text {
+        letter-spacing: 3px;
+        line-height: 1.7;
+        color: #7E7B7B;
+    }
+}
+
+
+
+// トラブル（悩み）
+
+
+
+.trouble {
+    padding-top: 70px;
+    background: url(../image/img2/bg-action-color.png);
+
+    &-content {
+        display: flex;
+        padding: 150px 0;
+        justify-content: center;
+    }
+
+    &-image {
+        width: 35%;
+    }
+
+    &-lists {
+        margin-left: 93px;
+    }
+
+    &-list {
+        color: #7E7B7B;
+        line-height: 2.55;
+        font-weight: 800;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: "";
+            background: url(../image/img2/asset.png)center / cover no-repeat;
+            width: 69px;
+            height: 69px;
+            top: 50%;
+            transform: translateY(-50%);
+            left: -60px;
+        }
+    }
+}
+
+
+
+// サジェッション（提案）
+
+
+
+.suggestion {
+    padding: 150px 0;
+
+    &-title {
+        font-size: 25px;
+        margin-top: 101px;
+        margin-bottom: 115px;
+        text-align: center;
+    }
+
+    &-items {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &-item {
+        &-text {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-shadow: 1px 1px 0px #000;
+        }
+
+        &:nth-child(1){
+            @include suggestion-item();
+            &::before {
+                content: "洗浄";
+            }
+        }
+
+        &:nth-child(2){
+            @include suggestion-item();
+            &::before {
+                content: "分解";
+            }
+        }
+    
+        &:nth-child(3){
+            @include suggestion-item();
+            &::before {
+                content: "活性";
+            }
+        }
+    
+        &:nth-child(4){
+            @include suggestion-item();
+            &::before {
+                content: "鎮静";
+            }
+        }
+    }
+}
+
+
+
+// ソニックエステ
+
+
+
+.esthe {
+    padding-top: 50px;
+    padding-bottom: 150px;
+}
+
+.esthe-content {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.esthe-image {
+    margin-right: 50px;
+    max-width: 40%;
+    height: 433px;
+}
+
+.esthe-image2{
+    display: none;
+}
+
+.esthe-lists {
+    padding: 3.5% 5%;
+    border: 3px solid $action-color;
+    color: $action-color;
+    font-size: 25px;
+    font-weight: 800;
+    height: 100%;
+    width: 43%;
+}
+
+.esthe-list {
+    line-height: 1.72;
+    letter-spacing: 3.5px;
+    margin-bottom: 30px;
+    &:last-child{
+        margin: 0;
+    }
+}
+
+
+
+// エステの流れ
+
+
+
+.flow {
+    background: url(../image/img2/bg-action-color.png);
+    padding: 150px 80px;
+
+    &-lists {
+        margin: 100px 0;
+        box-sizing: border-box;
+    }
+
+    &-list{
+        &:nth-child(odd) {
+            /* デザインを見る限り、奇数番は左、偶数番は右に文章があるのでodd/evenを使う
+            偶数個目に指定する場合 → even
+            奇数個目に指定する場合 → odd */
+            flex-direction: row-reverse;
+        }
+        &:first-child{
+            background: url(../image/img2/1START.png)left / contain no-repeat;
+            position: relative;
+            margin-bottom: 100px;
+            &::before {
+                content: "";
+                bottom: -15px;
+                right: 0;
+                position: absolute;
+                background: url(../image/img2/logo2.png)center / cover no-repeat;
+                width: 445px;
+                height: 480px;
+            }
+        }
+        &:last-child{
+            background: url(../image/img2/7FINISH.png)center / contain no-repeat;
+        }
+    }
+
+    &-block {
+        display: flex;
+        margin-bottom: 150px;
+
+        &:first-child {
+            display: block;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &-image {
+            &img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &-wrapper {
+            width: 75%;
+            padding: 4%;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+        
+        &-title {
+            font-size: 40px;
+            color: $action-color;
+            line-height: 2.8;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+        
+        &-text {
+            font-size: 18px;
+            line-height: 1.75;
+        }
+    }
+}
+
+.text2 {
+    position: relative;
+
+    &::before {
+        z-index: -1;
+        position: absolute;
+        content: "2";
+        color: #DCD1D9;
+        font-size: 250px;
+        top: -50%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+
+    }
+}
+
+.text3 {
+    position: relative;
+
+    &::before {
+        z-index: -1;
+        position: absolute;
+        content: "3";
+        color: #DCD1D9;
+        font-size: 250px;
+        top: 32%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.text4 {
+    position: relative;
+
+    &::before {
+        z-index: -1;
+        position: absolute;
+        content: "4";
+        color: #DCD1D9;
+        font-size: 250px;
+        top: 25%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.text5 {
+    position: relative;
+
+    &::before {
+        z-index: -1;
+        position: absolute;
+        content: "5";
+        color: #DCD1D9;
+        font-size: 250px;
+        top: 30%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.text6 {
+    position: relative;
+
+    &::before {
+        z-index: -1;
+        position: absolute;
+        content: "6";
+        color: #DCD1D9;
+        font-size: 250px;
+        top: -15%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.flow-text {
+    text-align: center;
+    line-height: 1.7;
+}
+
+
+
+// 価格＆メニュー
+
+
+
+.price {
+    padding: 100px;
+
+    &-title {
+        height: 70px;
+        font-size: 25px;
+        background-color: #A87699;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        padding-left: 50px;
+        margin-top: 100px;
+    }
+
+    &-item{
+        position: relative;
+
+        &:first-child {
+            &::after {
+                content: "※価格は税込表示です。";
+                position: absolute;
+                top: -20%;
+                right: 5px;
+                font-size: 20px;
+                color: #707070;
+            }
+        }
+    }
+}
+
+.price-content {
+    display: flex;
+    background: url(../image/img2/bg-action-color.png);
+    box-shadow: 0px 1px 6px #00000029;
+    padding: 25px 40px;
+}
+
+.price-text {
+    width: 60%;
+    line-height: 1.7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.price-time {
+    width: 40%;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.price-price {
+    width: 50%;
+    color: #E50315;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.price-wrapper {
+    width: 50%;
+}
+
+.price-price1 {
+    color: #E50315;
+    font-size: 70px;
+    padding-top: 30px;
+}
+
+.price-price2 {
+    color: #E50315;
+    font-size: 70px;
+    padding-top: 30px;
+}
+
+.note1 {
+    text-align: right;
+    font-size: 25px;
+}
+
+
+
+// クーポン
+
+
+
+.coupon {
+    padding: 100px 150px;
+    margin-bottom: 50px;
+
+    &-banner {
+        margin-top: 100px;
+    }
+    
+    &-text {
+        line-height: 1.7;
+        margin: 100px 120px 0;
+        p{
+            &:nth-child(2){
+                margin-right: 45%;
+            }
+        }
+    }
+}
+
+
+
+// 取扱商品
+
+
+
+.product {
+    padding: 100px;
+
+    &-brand {
+        width: 387px;
+        height: 128px;
+        margin: 100px auto 50px;
+    }
+
+    &-item {
+        display: flex;
+        background: url(../image/img2/bg-action-color.png);
+        padding: 30px 44px 30px 30px;
+        margin-bottom: 50px;
+        box-shadow: 0px 1px 6px #00000029;
+        letter-spacing: 1.5px;
+    
+        &:last-child{
+                margin-bottom: 0;
+        }   
+
+        &-image {
+            padding-right: 135px;
+
+            img {
+                width: 350px;
+                height: 220px;
+            }
+        }
+
+        &-wrapper {
+            padding-top: 25px;
+        }
+
+        &-title {
+            color: $action-color;
+            font-size: 30px;
+            border-bottom: 2px solid $action-color;
+            line-height: 2;
+        }
+
+        &-text {
+            font-size: 23px;
+            line-height: 3;
+        }
+    }
+}
+
+
+// インフォメーション（店内紹介）
+
+
+
+.information {
+    padding: 100px;
+
+    &-images {
+        margin-top: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &-image {
+        width: 45%;
+        margin: 25px;
+    }
+}
+
+
+
+// qa(よくある質問)
+
+
+
+.qa {
+    padding: 100px 10px;
+
+    &-content {
+        max-width: 650px;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 100px;
+    }
+
+    &-item {
+        margin-bottom: 100px;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}
+
+.accordion{
+    &-head {
+        font-weight: 800;
+        font-size: 22px;
+        color: $action-color;
+
+        &-1 {
+            position: relative;
+            &::after {
+                position: absolute;
+                content: "";
+                bottom: -335px;
+                right: -30%;
+                width: 420px;
+                height: 520px;
+                background: url(../image/img2/logo3.png)center / contain no-repeat;
+            }
+        }
+    }
+
+    &-body {
+        margin-top: 40px;
+        font-size: 22px;
+        line-height: 1.68;
+    }
+}
+
+
+
+// アクセス
+
+
+
+.access{
+    padding: 100px 0;
+
+    &-wrapper{
+        margin-top: 100px;
+    }
+
+    &-map {
+        margin-top: 100px;
+        iframe {
+            width: 100%;
+        }
+    }
+
+    &-wrapper1 {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    &-title {
+        font-size: 25px;
+        color: $action-color;
+        text-align: center;
+        border-bottom: double 7px $action-color;
+        font-weight: 800;   
+        line-height: 1.7;
+    }
+    
+    &-image{
+        margin-top: 40px;
+        max-width: 550px;
+        width: 100%;
+    }
+    
+    &-text {
+        margin: 50px;
+        line-height: 1.7;
+        font-size: 23px;
+    }
+    
+    &-wrapper2 {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 80px;
+    }
+
+    &-car{
+        margin: 0 50px;
+    }
+
+    &-bus{
+        margin: 0 50px;
+    }
+}
+
+.note2 {
+    text-align: right;
+    font-size: 18px;
+}
+
+
+
+// コンタクト
+
+
+
+.contact {
+    max-width: 840px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    padding: 0 10px;
+
+    &-title {
+        height: 70px;
+        font-size: 25px;
+        background-color: #A87699;
+        color: #fff;
+        box-shadow: 0px 1px 6px #00000029;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-content {
+        display: flex;
+        background: url(../image/img2/bg-action-color.png);
+        box-shadow: 0px 1px 6px #00000029;
+        padding: 82px 43px 60px 42px;
+        justify-content: space-around;
+    }
+
+    &-tel {
+        width: 67%;
+
+        &-text {
+            letter-spacing: 3px;
+            line-height: 1.7;
+        }
+
+        &-number {
+            letter-spacing: 4px;
+            font-size: 30px;
+            color: #7E7B7B;
+            margin-top: 28px;
+        }
+    }
+
+    &-line {
+        text-align: center;
+
+        
+        &-link {
+            img {
+                width: 100px;
+                height: 100px;
+                &:hover {
+                    border-radius: 22px;
+                    box-shadow: 8px 8px #575757;
+                }
+            }
+        }
+
+        &-text {
+            color: #7E7B7B;
+            font-size: 30px;
+            margin-top: 62px;
+        }
+    }
+}
+
+
+
+// フッター
+
+
+
+.footer {
+    padding: 15px 0;
+    background: $action-color;
+
+    &-copy {
+        text-align: center;
+        color: #F5EDED;
+    }
+}
+
+#page_top {
+    position: fixed;
+    bottom: 20%;
+    right: 5%;
+    font-weight: 800;
+
+    a {
+        background: url(../image/img2/bg-action-color.png);
+        color: $action-color;
+        text-align: center;
+        text-decoration: none;
+        padding: 20px 20px;
+        box-shadow: 0px 1px 6px #00000029;
+
+        &:hover {
+            background-color:$action-color;
+            text-decoration: none;
+        }
+    }
+}
+
+
+
+// ニュース
+
+
+.news{
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+
+    &-content {
+        align-items: center;
+        margin-top: 80px;
+    }
+
+    &-image {
+        margin-bottom: 50px;
+    }
+
+    &-sentence{
+        text-align: center;
+    }
+
+    &-title {
+        font-size: 30px;
+        font-weight: 600;
+        color: lightcoral;
+    }
+
+    &-text {
+        font-size: 25px;
+        letter-spacing: 3px;
+        line-height: 1.7;
+        color: #7E7B7B;
+        margin-bottom: 30px;
+    }
+}
